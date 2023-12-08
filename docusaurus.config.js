@@ -73,13 +73,13 @@ const config = {
           src: "img/kirby.gif",
         },
         items: [
+          { to: "/blog", label: "Blog", position: "left" },
           {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
             position: "left",
             label: "Tutorial",
           },
-          { to: "/blog", label: "Blog", position: "left" },
           {
             href: "https://github.com/ji-one",
             label: "GitHub",
