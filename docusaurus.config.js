@@ -76,9 +76,9 @@ const config = {
           { to: "/blog", label: "Blog", position: "left" },
           {
             type: "docSidebar",
-            sidebarId: "tutorialSidebar",
+            sidebarId: "docsSidebar",
             position: "left",
-            label: "Tutorial",
+            label: "Docs",
           },
           {
             href: "https://github.com/ji-one",
