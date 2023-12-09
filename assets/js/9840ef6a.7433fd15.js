@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[412],{5780:s=>{s.exports=JSON.parse('{"label":"spotless","permalink":"/blog/tags/spotless","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);

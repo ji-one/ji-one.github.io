@@ -2,19 +2,33 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ji-one.github.io/blog</id>
     <title>My Site Blog</title>
-    <updated>2023-12-09T00:00:00.000Z</updated>
+    <updated>2023-12-10T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ji-one.github.io/blog"/>
     <subtitle>My Site Blog</subtitle>
     <icon>https://ji-one.github.io/img/favicon.ico</icon>
     <entry>
-        <title type="html"><![CDATA[First Blog Post]]></title>
-        <id>https://ji-one.github.io/blog/first-blog-post</id>
-        <link href="https://ji-one.github.io/blog/first-blog-post"/>
-        <updated>2023-12-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[blog post test]]></summary>
-        <content type="html"><![CDATA[<p>blog post test</p>]]></content>
-        <category label="ji-one" term="ji-one"/>
-        <category label="blog" term="blog"/>
+        <title type="html"><![CDATA[Lint 도입기 (feat. Spotless)]]></title>
+        <id>https://ji-one.github.io/blog/clean-code-with-lint</id>
+        <link href="https://ji-one.github.io/blog/clean-code-with-lint"/>
+        <updated>2023-12-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[왜 Lint를 사용해야 할까?]]></summary>
+        <content type="html"><![CDATA[<h3 class="anchor anchorWithStickyNavbar_LWe7" id="왜-lint를-사용해야-할까">왜 Lint를 사용해야 할까?<a href="https://ji-one.github.io/blog/clean-code-with-lint#%EC%99%9C-lint%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%95%BC-%ED%95%A0%EA%B9%8C" class="hash-link" aria-label="Direct link to 왜 Lint를 사용해야 할까?" title="Direct link to 왜 Lint를 사용해야 ��할까?">​</a></h3>
+<p>나는 코딩 스타일을 중요하게 생각한다. 문단이 적절하게 나누어져 있고 띄어쓰기가 정확한 글이 읽기 좋은 것처럼, 코드도 가독성이 좋아야 한다.</p>
+<p>특히 여러 명이 참여하는 프로젝트라면 모든 팀원이 동일한 코딩 스타일을 따르는 게 더욱 중요하다. 일관된 코드 스타일을 유지해야 서로의 코드를 빠르게 이해할 수 있고 유지보수가 쉬워져 결론적으로 소프트웨어의 품질을 향상시킬 수 있기 때문이다.</p>
+<p>현재 내가 속한 팀은 <a href="https://en.wikipedia.org/wiki/Lint_(software)" target="_blank" rel="noopener noreferrer">Lint</a>를 적용하고 있지 않아서, 코드 포맷팅 관련 리뷰에 많은 리소스를 사용하고 있다. 이러한 리소스를 비즈니스 로직에 집중하기 위해 Lint를 도입하기로 했다.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="그렇다면-어떤-lint를">그렇다면 어떤 Lint를?<a href="https://ji-one.github.io/blog/clean-code-with-lint#%EA%B7%B8%EB%A0%87%EB%8B%A4%EB%A9%B4-%EC%96%B4%EB%96%A4-lint%EB%A5%BC" class="hash-link" aria-label="Direct link to 그렇다면 어떤 Lint를?" title="Direct link to 그렇다면 어떤 Lint를?">​</a></h3>
+<p><a href="https://github.com/diffplug/spotless/tree/main" target="_blank" rel="noopener noreferrer">spotless</a>를 선택했다.</p>
+<p>spotless에서 지원하는 명령어 중 <code>spotlessApply</code>를 사용하면 코드가 컨벤션에 맞게 자동으로 수정된다. 따라서 효율적으로 코딩 스타일을 준수할 수 있을 것으로 판단했다. 또한, <code>spotlessCheck</code>로 코드가 정해진 컨벤션을 지키고 있는지 검사할 수도 있다.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="lint-검사를-자동화하자">Lint 검사를 자동화하자<a href="https://ji-one.github.io/blog/clean-code-with-lint#lint-%EA%B2%80%EC%82%AC%EB%A5%BC-%EC%9E%90%EB%8F%99%ED%99%94%ED%95%98%EC%9E%90" class="hash-link" aria-label="Direct link to Lint 검사를 자동화하자" title="Direct link to Lint 검사를 자동화하자">​</a></h3>
+<p>가장 먼저, <code>spotlessCheck</code>에 실패하면 CI가 실패하도록 했다.</p>
+<p>그러나 CI가 실패하고 나서야 린트 오류임을 인지하는 게 불편할 것 같아서 <a href="https://typicode.github.io/husky/" target="_blank" rel="noopener noreferrer">husky</a>를 사용해 <code>spotlessCheck</code>에 성공하지 못하면 푸시도 실패하도록 설정했다.
+커밋 전에 검사하지 않는 이유는, 커밋을 잘게 나누어 자주 하는 팀원들에게는 오히려 번거로울 수 있다고 생각했다.</p>
+<p>푸시에 실패하면 자동으로 <code>spotlessApply</code>를 실행하는 것도 고려했지만(심지어 커밋까지 자동으로 되도록), 개발자가 인지하지 못한 상태에서 변경 사항이 생기는 것은 위험하다고 판단되어 적용하지 않았다.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="남은-과제">남은 과제<a href="https://ji-one.github.io/blog/clean-code-with-lint#%EB%82%A8%EC%9D%80-%EA%B3%BC%EC%A0%9C" class="hash-link" aria-label="Direct link to 남은 과제" title="Direct link to 남은 과제">​</a></h3>
+<p>현재 설정은 아래와 같이 기본적인 규칙만 적용했다. 앞으로 팀원들과 함께 리뷰에서 어떤 코드 규칙을 추가할지 논의하고자 한다.</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">spotless {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    java {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        importOrder() // import 문 정렬</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        removeUnusedImports() // 사용되지 않는 import 문 제거</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        trimTrailingWhitespace() // 행 끝의 공백 제거</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        endWithNewline() // 파일 끝에 개행 문자 추가</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    }</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>]]></content>
+        <category label="clean code" term="clean code"/>
+        <category label="spotless" term="spotless"/>
     </entry>
 </feed>
