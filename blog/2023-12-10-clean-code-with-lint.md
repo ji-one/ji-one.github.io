@@ -12,7 +12,7 @@ tags: [clean code, spotless]
 
 현재 내가 속한 팀은 [Lint](<https://en.wikipedia.org/wiki/Lint_(software)>)를 적용하고 있지 않아서, 코드 포맷팅 관련 리뷰에 많은 리소스를 사용하고 있다. 이러한 리소스를 비즈니스 로직에 집중하기 위해 Lint를 도입하기로 했다.
 
-### 그렇다면 어떤 Lint를?
+### 어떤 Lint를 사용할까?
 
 [spotless](https://github.com/diffplug/spotless/tree/main)를 선택했다.
 
