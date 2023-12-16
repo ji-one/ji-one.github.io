@@ -8,9 +8,9 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
-  favicon: "img/favicon.ico",
+  title: "Kirby Archive",
+  tagline: "Kirby is cool",
+  favicon: "img/kirby-pixel.png",
 
   // Set the production url of your site here
   url: "https://ji-one.github.io",
